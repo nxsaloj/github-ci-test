@@ -1,0 +1,22 @@
+name: Display variable in console
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  display-variable-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Display variable
+        run: |
+          echo "My variable value is : $VARIABLE_GREETING"
+      
+      - name: Display secret
+        run: |
+          echo "My secret value is: ${{ secrets.SECRET_GREETING }}"
