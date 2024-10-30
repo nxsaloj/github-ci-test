@@ -8,6 +8,7 @@ on:
 jobs:
   display-variable-job:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
       - name: Checkout repository
@@ -15,7 +16,23 @@ jobs:
 
       - name: Display variable
         run: |
-          echo "My variable value is : $VARIABLE_GREETING"
+          echo "My variable value is : ${{ vars.VARIABLE_GREETING }}"
+      
+      - name: Display secret
+        run: |
+          echo "My secret value is: ${{ secrets.SECRET_GREETING }}"
+  
+  display-prod-variable-job:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Display variable
+        run: |
+          echo "My variable value is : ${{ vars.VARIABLE_GREETING }}"
       
       - name: Display secret
         run: |
